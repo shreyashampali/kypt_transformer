@@ -66,9 +66,9 @@ Depending on the dataset you intend to evaluate follow the instructions below.
 2. Download the checkpoint file from [here](https://1drv.ms/u/s!AsG9HA3ULXQRgsh38J5YoCaV76hICw?e=fP5jaJ)
 3. Run the following command:
     ```
-    python test.py --ckpt_path <path_to_interhand2.6m_ckpt>
+    python test.py --ckpt_path <path_to_interhand2.6m_ckpt> --gpu_ids <gpu_ids>
     ```
-    If running on multiple GPUs, set `CUDA_VISIBLE_DEVICES=0,1,2,3` before the above command. 
+    If running on multiple GPUs, set `<gpu_ids>` to `0,1,2,3` 
 4. The error metrics are dumped into a .txt file in the folder containing the checkpoint
 
 ### HO-3D (v2) (Table 2 in Paper)
