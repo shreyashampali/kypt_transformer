@@ -31,7 +31,7 @@ at **CVPR'22 (Oral)**
 The setup has been tested on NVIDIA 3090 GPU.
 
 Depending on the dataset you intend to train/evaluate follow the instructions below for the setup.
-#### InterHand2.6M Setup
+### InterHand2.6M Setup
 1. Download the dataset from the [website](https://mks0601.github.io/InterHand2.6M/)
 2. In `config.py`, set `interhand_anno_dir` to point to the annotations directory
 3. In `config.py`, set `interhand_images_path` to point to the images directory
@@ -40,7 +40,7 @@ root joint translation, download the RootNet results for InterHand2.6M from [her
 Set `root_net_output_path` in `config.py` for point to the RootNet outputs folder. 
 Instead, if you intend to test with ground-truth relative translation, set `root_net_output_path` to `None`
 
-#### HO-3D Setup
+### HO-3D Setup
 1. Download the dataset from the [website](https://www.tugraz.at/institute/icg/research/team-lepetit/research-projects/hand-object-3d-pose-annotation/)
 and set `ho3d_anno_dir` in `config.py` to point to the dataset folder
 2. Download the YCB models from [here](https://github.com/shreyashampali/ho3d?#basic-setup). The original mesh models are large and wont fit in the memory
@@ -48,7 +48,7 @@ for some computation. Because of this the mesh decimated to 2000 faces as descri
 decimated models as `textured_simple_2000.obj`
 
 
-#### H<sub>2</sub>O-3D Setup
+### H<sub>2</sub>O-3D Setup
 1. Download the dataset from the [website](https://www.tugraz.at/index.php?id=57823)
 and set `h2o3d_anno_dir` in `config.py` to point to the dataset folder.
 2. Follow step 2 in HO-3D Setup above to download, decimate and set the object models.
@@ -57,7 +57,7 @@ and set `h2o3d_anno_dir` in `config.py` to point to the dataset folder.
 ## Evaluation
 Depending on the dataset you intend to evaluate follow the instructions below.
 
-#### InterHand2.6M (Table 1 in Paper)
+### InterHand2.6M (Table 1 in Paper)
 1. Make the following changes in the `config.py` 
     ```
     dataset = 'InterHand2.6M'`
@@ -71,7 +71,7 @@ Depending on the dataset you intend to evaluate follow the instructions below.
     If running on multiple GPUs, set `CUDA_VISIBLE_DEVICES=0,1,2,3` before the above command. 
 4. The error metrics are dumped into a .txt file in the folder containing the checkpoint
 
-#### HO-3D (v2) (Table 2 in Paper)
+### HO-3D (v2) (Table 2 in Paper)
 1. Make the following changes in the `config.py` 
     ```
     dataset = 'ho3d'
@@ -86,7 +86,7 @@ Depending on the dataset you intend to evaluate follow the instructions below.
 5. Also dumped is a .json file which can be submitted to the
  [HO-3D (v2) challenge](https://codalab.lisn.upsaclay.fr/competitions/4318) after zipping the file
  
- #### H<sub>2</sub>O-3D
+ ### H<sub>2</sub>O-3D
 1. Make the following changes in the `config.py` 
     ```
     dataset = 'h2o3d'
@@ -113,7 +113,7 @@ the `config.py`.
 3. The checkpoints are dumped after every ecoch in the 'output' folder of the base directory
 4. Tensorboard logging is also available in the 'output' folder
 
-#####Training with HO-3D and H<sub>2</sub>O-3D datasets together
+##### Training with HO-3D and H<sub>2</sub>O-3D datasets together
 The H<sub>2</sub>O-3D results in the paper are obtained by training the network on the combined dataset
 of HO-3D and H<sub>2</sub>O-3D. This training can be achieved by setting `dataset` to
 `ho3d_h2o3d` in `config.py`.
