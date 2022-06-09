@@ -71,6 +71,14 @@ Depending on the dataset you intend to evaluate follow the instructions below.
     If running on multiple GPUs, set `<gpu_ids>` to `0,1,2,3` 
 4. The error metrics are dumped into a .txt file in the folder containing the checkpoint
 
+5. Final numbers as below:
+
+[[Results txt file]](https://1drv.ms/t/s!AsG9HA3ULXQRgskIIuhkNOf2rnnEzA?e=NabzE2)
+
+| Single Hand MPJPE (mm) | Interacting Hands MPJPE (mm) | All MPJPE (mm) | MRRPE (mm) |
+| ----------- | ----------- | ----------- | ----------- |
+|    10.88    | 14.16       | 12.62 | 29.50 |
+
 ### HO-3D (v2) (Table 2 in Paper)
 1. Make the following changes in the `config.py` 
     ```
@@ -83,8 +91,10 @@ Depending on the dataset you intend to evaluate follow the instructions below.
     python test.py --ckpt_path <path_to_ho3d_ckpt> --use_big_decoder --dec_layers 6
     ```
 4. The object error metric (MSSD) is dumped into a .txt file in the folder containing the checkpoint
-5. Also dumped is a .json file which can be submitted to the
- [HO-3D (v2) challenge](https://codalab.lisn.upsaclay.fr/competitions/4318) after zipping the file
+5. Also dumped is a .json file which can be submitted to the [HO-3D (v2) challenge](https://codalab.lisn.upsaclay.fr/competitions/4318) after zipping the file
+6. Here is the dumped results file after the run: [[Results txt file]](https://1drv.ms/t/s!AsG9HA3ULXQRgskKj_FxMhh-8Drk4g?e=9Ik6T7)
+7. Hand pose estimation accuracy in the HO-3D challenge leaderboard: [here](https://codalab.lisn.upsaclay.fr/competitions/4318#results), user: *bullet*
+ 
  
  ### H<sub>2</sub>O-3D
 1. Make the following changes in the `config.py` 
@@ -100,6 +110,8 @@ Depending on the dataset you intend to evaluate follow the instructions below.
 4. The object error metric (MSSD) is dumped into a .txt file in the folder containing the checkpoint
 5. Also dumped is a .json file which can be submitted to the
  [H<sub>2</sub>O-3D challenge](https://codalab.lisn.upsaclay.fr/competitions/4897) after zipping the file.
+6. Here is the dumped results file after the run: [[Results txt file]](https://1drv.ms/t/s!AsG9HA3ULXQRgskJjZ7F6n_m4dmaeA?e=5lvte5)
+7. Hand pose estimation accuracy in the H<sub>2</sub>O-3D challenge leaderboard: [here](https://codalab.lisn.upsaclay.fr/competitions/4897#results), user: *bullet*
  
  
 ## Training
