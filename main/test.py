@@ -68,7 +68,6 @@ def main():
 
     args = parse_args()
     cfg.set_args(args.gpu_ids, '')
-    cudnn.benchmark = True
 
     tester = Tester(args.ckpt_path)
     tester._make_batch_generator(args.test_set, args.annot_subset, args.capture, args.camera, args.seq_name)

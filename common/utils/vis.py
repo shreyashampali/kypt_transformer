@@ -407,8 +407,8 @@ class OrthographicRender():
         # mesh.translate(trans)
         # print(vertices)
 
-        mesh = pyrender.Mesh.from_trimesh(trimesh.Trimesh(vertices=vertices, faces=np.array(mesh.triangles),
-                                                          vertex_colors=(np.load('/home/shreyas/docs/vertex_colors.npy')[:,[2,1,0]])))
+        mesh = pyrender.Mesh.from_trimesh(trimesh.Trimesh(vertices=vertices, faces=np.array(mesh.triangles),))
+                                                          # vertex_colors=(np.load('/home/shreyas/docs/vertex_colors.npy')[:,[2,1,0]])))
 
         mesh_node = self.scene.add(mesh, pose=np.eye(4))
         color, depth = self.renderer.render(self.scene)
@@ -503,7 +503,7 @@ class H2O3DObjects():
         self.get_obj_id_to_mesh()
 
     def get_obj_id_to_mesh(self):
-        YCB_models_dir = '/media/shreyas/ssd2/Dataset/HO3D_Release_SC_MC/YCB_Video_Models/models'
+        YCB_models_dir = cfg.object_models_dir
         obj_names = os.listdir(YCB_models_dir)
         self.obj_id_to_name = {int(o[:3]):o for o in obj_names}
         self.obj_id_to_mesh = {}
@@ -512,9 +512,9 @@ class H2O3DObjects():
             if id not in [3,4,6,10,11,19,21,25,35,37,24]:
                 continue
             obj_name = self.obj_id_to_name[id]
-            print(os.path.join(YCB_models_dir, obj_name, 'textured_simple.obj'))
-            assert os.path.exists(os.path.join(YCB_models_dir, obj_name, 'textured_simple.obj'))
-            o3d_mesh = o3d.io.read_triangle_mesh(os.path.join(YCB_models_dir, obj_name, 'textured_simple.obj'))
+            # print(os.path.join(YCB_models_dir, obj_name, 'textured_simple_2000.obj'))
+            assert os.path.exists(os.path.join(YCB_models_dir, obj_name, 'textured_simple_2000.obj'))
+            o3d_mesh = o3d.io.read_triangle_mesh(os.path.join(YCB_models_dir, obj_name, 'textured_simple_2000.obj'))
             # o3d.visualization.draw_geometries([o3d_mesh])
             self.obj_id_to_mesh[id] = o3d_mesh
 

@@ -53,6 +53,30 @@ decimated models as `textured_simple_2000.obj`
 and set `h2o3d_anno_dir` in `config.py` to point to the dataset folder.
 2. Follow step 2 in HO-3D Setup above to download, decimate and set the object models.
 
+## Demo
+We provide the demo script for visualizing the outputs.
+### InterHand2.6M
+1. Download the checkpoint file for the model trained to output MANO joint angles from [here](https://1drv.ms/u/s!AsG9HA3ULXQRgskO89bIy8j3h-HTXQ?e=J6FHVu)
+2. Set `dataset = 'InterHand2.6M'` and `pose_representation = 'angles'` in `config.py`
+3. Run the following script:
+    ```
+    python demo.py --ckpt_path <path_to_ckpt> --use_big_decoder --dec_layers 6
+    ```
+4. The outputs are shown in matplotlib and open3d windows. See the instructions in the command line to navigate
+
+![](demo1.png)
+
+### HO-3D
+1. Download the checkpoint file for the model trained to output 3D pose representation from [here](https://1drv.ms/u/s!AsG9HA3ULXQRgskPefU5ZyiGvgWEVw?e=h1yiNM)
+2. Set `dataset = 'ho3d'` and `pose_representation = '3D'` in `config.py`
+3. Run the follwing script:
+    ```
+    python demo.py --ckpt_path <path_to_ckpt> --use_big_decoder --dec_layers 6
+    ```
+4. Since the output here is only 3D joint locations, the projections in 2D are shown in the matplotlib window. See the instructions in
+the command line to navigate.
+
+![](demo2.png)
 
 ## Evaluation
 Depending on the dataset you intend to evaluate follow the instructions below.

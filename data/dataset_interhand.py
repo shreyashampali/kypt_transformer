@@ -90,7 +90,7 @@ class Dataset(torch.utils.data.Dataset):
             # print('Fix shapedirs bug of MANO')
             self.mano_layer['left'].shapedirs[:, 0, :] *= -1
         
-        for aid in tqdm(list(db.anns.keys())[::1]):
+        for aid in tqdm(list(db.anns.keys())[::100]):
             ann = db.anns[aid]
             image_id = ann['image_id']
             img = db.loadImgs(image_id)[0]
