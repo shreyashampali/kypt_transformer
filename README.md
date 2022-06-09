@@ -31,7 +31,7 @@ at **CVPR'22 (Oral)**
 The setup has been tested on NVIDIA 3090 GPU.
 
 Depending on the dataset you intend to train/evaluate follow the instructions below for the setup.
-### InterHand2.6M Setup
+#### InterHand2.6M Setup
 1. Download the dataset from the [website](https://mks0601.github.io/InterHand2.6M/)
 2. In `config.py`, set `interhand_anno_dir` to point to the annotations directory
 3. In `config.py`, set `interhand_images_path` to point to the images directory
@@ -40,7 +40,7 @@ root joint translation, download the RootNet results for InterHand2.6M from [her
 Set `root_net_output_path` in `config.py` for point to the RootNet outputs folder. 
 Instead, if you intend to test with ground-truth relative translation, set `root_net_output_path` to `None`
 
-### HO-3D Setup
+#### HO-3D Setup
 1. Download the dataset from the [website](https://www.tugraz.at/institute/icg/research/team-lepetit/research-projects/hand-object-3d-pose-annotation/)
 and set `ho3d_anno_dir` in `config.py` to point to the dataset folder
 2. Download the YCB models from [here](https://github.com/shreyashampali/ho3d?#basic-setup). The original mesh models are large and wont fit in the memory
@@ -48,14 +48,14 @@ for some computation. Because of this the mesh decimated to 2000 faces as descri
 decimated models as `textured_simple_2000.obj`
 
 
-### H<sub>2</sub>O-3D Setup
+#### H<sub>2</sub>O-3D Setup
 1. Download the dataset from the [website](https://www.tugraz.at/index.php?id=57823)
 and set `h2o3d_anno_dir` in `config.py` to point to the dataset folder.
 2. Follow step 2 in HO-3D Setup above to download, decimate and set the object models.
 
 ## Demo
 We provide the demo script for visualizing the outputs.
-### InterHand2.6M
+#### InterHand2.6M
 1. Download the checkpoint file for the model trained to output MANO joint angles from [here](https://1drv.ms/u/s!AsG9HA3ULXQRgskO89bIy8j3h-HTXQ?e=J6FHVu)
 2. Set `dataset = 'InterHand2.6M'` and `pose_representation = 'angles'` in `config.py`
 3. Run the following script:
@@ -66,7 +66,7 @@ We provide the demo script for visualizing the outputs.
 
 ![](demo1.png)
 
-### HO-3D
+#### HO-3D
 1. Download the checkpoint file for the model trained to output 3D pose representation from [here](https://1drv.ms/u/s!AsG9HA3ULXQRgskPefU5ZyiGvgWEVw?e=h1yiNM)
 2. Set `dataset = 'ho3d'` and `pose_representation = '3D'` in `config.py`
 3. Run the follwing script:
@@ -81,7 +81,7 @@ the command line to navigate.
 ## Evaluation
 Depending on the dataset you intend to evaluate follow the instructions below.
 
-### InterHand2.6M (Table 1 in Paper)
+#### InterHand2.6M (Table 1 in Paper)
 1. Make the following changes in the `config.py` 
     ```
     dataset = 'InterHand2.6M'`
@@ -103,7 +103,7 @@ Depending on the dataset you intend to evaluate follow the instructions below.
 | ----------- | ----------- | ----------- | ----------- |
 |    10.88    | 14.16       | 12.62 | 29.50 |
 
-### HO-3D (v2) (Table 2 in Paper)
+#### HO-3D (v2) (Table 2 in Paper)
 1. Make the following changes in the `config.py` 
     ```
     dataset = 'ho3d'
@@ -120,7 +120,7 @@ Depending on the dataset you intend to evaluate follow the instructions below.
 7. Hand pose estimation accuracy in the HO-3D challenge leaderboard: [here](https://codalab.lisn.upsaclay.fr/competitions/4318#results), user: *bullet*
  
  
- ### H<sub>2</sub>O-3D
+#### H<sub>2</sub>O-3D
 1. Make the following changes in the `config.py` 
     ```
     dataset = 'h2o3d'
