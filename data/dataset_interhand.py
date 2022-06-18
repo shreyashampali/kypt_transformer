@@ -45,10 +45,11 @@ class Dataset(torch.utils.data.Dataset):
         self.annot_subset = annot_subset # all, human_annot, machine_annot
         self.img_path = cfg.interhand_images_path
         self.annot_path = cfg.interhand_anno_dir
-        if self.annot_subset == 'machine_annot' and self.mode == 'val':
-            self.rootnet_output_path = os.path.join(cfg.root_net_output_path, 'rootnet_interhand2.6m_output_machine_annot_val.json')
-        else:
-            self.rootnet_output_path = os.path.join(cfg.root_net_output_path, 'rootnet_interhand2.6m_output_all_test.json')
+        if cfg.trans_test == 'rootnet':
+            if self.annot_subset == 'machine_annot' and self.mode == 'val':
+                self.rootnet_output_path = os.path.join(cfg.root_net_output_path, 'rootnet_interhand2.6m_output_machine_annot_val.json')
+            else:
+                self.rootnet_output_path = os.path.join(cfg.root_net_output_path, 'rootnet_interhand2.6m_output_all_test.json')
         self.transform = transform
         self.joint_num = 21 # single hand
         self.root_joint_idx = {'right': 20, 'left': 41}
