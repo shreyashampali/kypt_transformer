@@ -385,6 +385,34 @@ class Dataset(torch.utils.data.Dataset):
         else:
             hm_valid = np.array([1.]).astype(np.float32)
 
+        if False:
+            verts_right, faces_right = self.get_mano_vertices(mano_pose[:48], mano_shape[:10], np.zeros((3,)), 'right')
+            verts_left, faces_left = self.get_mano_vertices(mano_pose[48:], mano_shape[10:], rel_trans_hands_rTol,
+                                                            'left')  # add the rel trans in loss.py
+
+            rotmat = np.array([[1, 0, 0, 0], [0, -1, 0, 0], [0, 0, -1, 0], [0, 0, 0, 1]]) * 1.0
+            # visualize mesh in open3d
+            # print(mano_valid)
+
+            mesh_list = []
+            if hand_type[0] == 1:
+                mesh_right_o3d = o3d.geometry.TriangleMesh()
+                mesh_right_o3d.vertices = o3d.utility.Vector3dVector(verts_right)
+                mesh_right_o3d.triangles = o3d.utility.Vector3iVector(faces_right)
+                mesh_right_o3d.vertex_colors = o3d.utility.Vector3dVector(
+                    np.load('/home/shreyas/docs/vertex_colors.npy')[:, ::-1])
+                mesh_list.append(mesh_right_o3d.transform(rotmat))
+
+            if hand_type[1] == 1:
+                mesh_left_o3d = o3d.geometry.TriangleMesh()
+                mesh_left_o3d.vertices = o3d.utility.Vector3dVector(verts_left)
+                mesh_left_o3d.triangles = o3d.utility.Vector3iVector(faces_left)
+                mesh_left_o3d.vertex_colors = o3d.utility.Vector3dVector(
+                    np.load('/home/shreyas/docs/vertex_colors.npy')[:, ::-1])
+                mesh_list.append(mesh_left_o3d.transform(rotmat))
+
+            o3d.visualization.draw_geometries(mesh_list, mesh_show_back_face=True)
+
 
         inputs = {'img': img, 'mask': mask}
 

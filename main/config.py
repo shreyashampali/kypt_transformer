@@ -8,8 +8,8 @@ from datetime import datetime
 
 class Config:
     # ~~~~~~~~~~~~~~~~~~~~~~Dataset~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-    dataset = 'ho3d'  # InterHand2.6M, ho3d, h2o3d, ho3d_h2o3d
-    pose_representation = '3D' #3D, 2p5D, angles
+    dataset = 'InterHand2.6M'  # InterHand2.6M, ho3d, h2o3d, ho3d_h2o3d
+    pose_representation = 'angles' #3D, 2p5D, angles
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 
