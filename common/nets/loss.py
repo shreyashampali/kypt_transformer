@@ -55,7 +55,7 @@ class CameraParamLoss(nn.Module):
         joints_gt1 = joints_gt / 1000
 
 
-        if cfg.predict_type == 'vectors':
+        if cfg.predict_type == 'vectors' or True:
             # when its 2 hand image and the left or right root joint has no annotation
             joint_valid[:,21:] *= (rel_trans_valid)
 
@@ -647,12 +647,17 @@ class JointLoss(nn.Module):
 
         super(JointLoss, self).__init__()
 
-    def forward(self, rel_trans_in, joints_gt, joint_valid, joint_loc_2d_gt, rel_trans_valid, joints_pred, cam_param=None):
+    def forward(self, rel_trans_in, joints_gt_in, joint_valid, joint_loc_2d_gt, rel_trans_valid, joints_pred, cam_param=None):
 
-        bs = joints_gt.shape[0]
+        bs = joints_gt_in.shape[0]
 
-        joints_right = joints_pred['joints_right']
-        joints_left = joints_pred['joints_left']
+        # get only root-relative joint locations
+        joints_right = joints_pred['joints_right'] - joints_pred['joints_right'][:,:,20:21]
+        joints_left = joints_pred['joints_left'] - joints_pred['joints_left'][:,:,20:21]
+
+        joints_gt_right = joints_gt_in[:,:21] - joints_gt_in[:,20:21]
+        joints_gt_left = joints_gt_in[:, 21:] - joints_gt_in[:, 41:42]
+        joints_gt = torch.cat([joints_gt_right, joints_gt_left], dim=1)
 
         if cfg.hand_type == 'both':
             joints_out = torch.cat([joints_right, joints_left], dim=2) # 6 x N x 42 x 3

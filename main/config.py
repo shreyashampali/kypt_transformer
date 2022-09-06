@@ -5,6 +5,20 @@ import os.path as osp
 import sys
 from common.utils.dir import add_pypath, make_folder
 from datetime import datetime
+import torch
+import random
+import numpy as np
+
+def fix_seeds(random_seed):
+
+    np.random.seed(random_seed)
+    torch.manual_seed(random_seed)
+    torch.cuda.manual_seed(random_seed)
+    torch.cuda.manual_seed_all(random_seed) # if use multi-GPU
+    # torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    np.random.seed(random_seed)
+    random.seed(random_seed)
 
 class Config:
     # ~~~~~~~~~~~~~~~~~~~~~~Dataset~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -255,4 +269,5 @@ sys.path.insert(0, osp.join(cfg.root_dir, 'common'))
 add_pypath(osp.join(cfg.data_dir))
 add_pypath(osp.join(cfg.data_dir, cfg.dataset))
 make_folder(cfg.log_dir)
+# fix_seeds(0)
 

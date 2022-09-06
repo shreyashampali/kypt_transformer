@@ -314,7 +314,7 @@ class Dataset(torch.utils.data.Dataset):
 
         if cfg.predict_type == 'angles':
             rel_trans_hands_rTol = mano_trans[3:] - mano_trans[:3]
-            if root_valid and (np.sum(joint_valid[:21]) == 0):  # when its only left hand image
+            if (np.sum(joint_valid[:21]) == 0) or not mano_valid[0]:  # when its only left hand image
                 # when its only left hand, shift it closer to right hand
                 rel_trans_hands_rTol = np.array([0.2, 0., 0.]).astype(np.float32)
 
@@ -606,7 +606,7 @@ class Dataset(torch.utils.data.Dataset):
 
             # mpjpe
             for j in range(self.joint_num * 2):
-                if joint_valid[j]:
+                if joint_valid[j]>0:
                     err += np.sqrt(np.sum((pred_joint_coord_cam[j] - gt_joint_coord_cam[j]) ** 2))
                     cnt += 1
                     if np.sum(gt_hand_type) == 1:
